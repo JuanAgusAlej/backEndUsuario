@@ -5,8 +5,8 @@ function EnviarCorreoConfirmacion(correo) {
       host: 'smtp.elasticemail.com',
       port: 2525,
     auth: {
-      user: 'estafamlibre147@gmail.com',
-      pass: 'D80D9EF1E475E25A3F0343DF92A7CCAAE918',
+      user: '',
+      pass: '',
     },
   });
   const message = {
