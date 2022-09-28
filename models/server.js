@@ -13,6 +13,7 @@ class Server {
     this.publicacionesPath = "/api/publicaciones";
     this.authPath = "/api/auth";
     this.like = "/api/like";
+    this.suscriptionPath = "/api/suscription";
     this.middleware();
     //Rutas
     this.routes();
@@ -38,11 +39,8 @@ class Server {
 
   routes() {
     this.app.use(this.usuariosPath, require("../routes/usuarios.js"));
-    this.app.use(this.comentariosPath, require("../routes/comentarios"));
-    this.app.use(this.aboutUsesPath, require("../routes/aboutUses"));
-    this.app.use(this.publicacionesPath, require("../routes/publicaciones"));
     this.app.use(this.authPath, require("../routes/auth"));
-    this.app.use(this.like, require("../routes/like"));
+    this.app.use(this.suscriptionPath, require("../routes/suscription"));
 
   }
 
