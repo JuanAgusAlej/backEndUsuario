@@ -1,28 +1,29 @@
 const nodemailer = require('nodemailer');
 
-function EnviarCorreoConfirmacion(correo) {
+async function EnviarCorreoConfirmacion(correo, subject, text, res) {
   var transport = nodemailer.createTransport({
-      host: 'smtp.elasticemail.com',
-      port: 2525,
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
     auth: {
-      user: '',
-      pass: '',
+      user: process.env.USER, // generated ethereal user
+      pass: process.env.PASS,
     },
   });
   const message = {
-    from: 'aten147@gmail.com', // Sender address
-    to: correo,         // List of recipients
-    subject: 'Design Your Model S | Tesla', // Subject line
-    text: 'Have the most fun you can in a car. Get your Tesla today!' // Plain text body
-};
-transport.sendMail(message, function(err, info) {
+    from: process.env.USER, // Sender address
+    to: correo, // List of recipients
+    subject: 'Suscripcion', // Subject line
+    text: 'Gracias por suscribirte, recibiras informacion a tu correo', // Plain text body
+  };
+  await transport.sendMail(message, function (err, info) {
     if (err) {
-      console.log(err)
+      res.json({ status: 500, res: err });
     } else {
       console.log(info);
+      res.json({ status: 201, res: 'Gracias por suscribirte' });
     }
-});
-
+  });
 }
 
 module.exports = EnviarCorreoConfirmacion;
