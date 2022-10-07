@@ -58,7 +58,9 @@ const usuariosPost = async (req = request, res = response) => {
 
   //guardar datos en la BD
   await usuario.save();
-
+  const subject = 'Registro en EstafaMLibre';
+  const text = 'Gracias por registrarte a nuestro servicio de estafa.';
+  EnviarCorreoConfirmacion(correo, subject, text, res);
   res.json({
     usuario,
   });
